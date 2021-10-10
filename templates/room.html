@@ -24,7 +24,7 @@
                     </div>
                     <div class="form-group">
                         <input class="form-control" id="input" type="text"></br>
-                        <input type="file" name="file" id="file"/>
+                        {% comment %} <input type="file" name="file" id="file"/> {% endcomment %}
                     </div>
                     <input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send">
                 </form>
@@ -44,7 +44,7 @@
 
             chatSocket.send(JSON.stringify({
                 'message': message,
-                'username': "adminf"
+                'username': "badmus"
             }));
             //'username': "me.tushark999",
 
@@ -75,16 +75,9 @@
 
                 for(let message of messages.messages){
                     console.log(message)
-                    if (message.file){
-                        var chat = document.createElement('img')
-                        chat.src = message.file
-                        console.log("File")
-                    }else{
-                        console.log("No file")
-                        var chat = document.createElement('p')
-                        
-                        chat.textContent = message.user + ': ' + message.message;
-                    }
+                    var chat = document.createElement('p')
+                    
+                    chat.textContent = message.user + ': ' + message.message;
                     document.querySelector('#chat-text').append(chat)
                 }
             }
@@ -92,7 +85,7 @@
                 console.log("Chats");
                 var chat = document.createElement('p')
                 
-                chat.textContent = data.user_info.name + ': ' + data.message;
+                chat.textContent = data.user_info.username + ': ' + data.message;
                 document.querySelector('#chat-text').append(chat)
             }
         }

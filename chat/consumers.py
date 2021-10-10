@@ -77,9 +77,9 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             print((message))
             sender = await self.sender_valid(sender_username)
             if sender is None:
-                print("Sender is not associated with to room")
+                print("Sender is not associated to room")
                 await self.send_json({
-                    "message":"Sender is not associated with to room"
+                    "message":"Sender is not associated to room"
                 })
                 pass
             
@@ -88,9 +88,7 @@ class ChatConsumer(AsyncJsonWebsocketConsumer):
             
             await self.send_json({
 				"user_info":{
-						"name":sender.name, 
 						"username":sender.username,
-						"avatar":sender.profile_picture.url
 				},
 				"message":message
 			})
